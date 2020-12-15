@@ -11,7 +11,7 @@ app.use(cors())
 
 var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
-mongoose.connect('mongodb://localhost:27017/mevn', { useUnifiedTopology: true, useNewUrlParser: true, promiseLibrary: require('bluebird') })
+mongoose.connect('mongodb://uju1tkogrr00ejqnfubj:0Nom3LLSdKvRgT1SpaXm@btjdwq6zxhlzg0j-mongodb.services.clever-cloud.com:27017/btjdwq6zxhlzg0j', { useUnifiedTopology: true, useNewUrlParser: true, promiseLibrary: require('bluebird') })
   .then(() =>  console.log('... connected to MongoDb on Port 27017'))
   .catch((err) => console.error(err));
 
@@ -37,7 +37,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
+  //res.json({ error: err })​;
 });
 
 module.exports = app;

@@ -1,0 +1,68 @@
+<div class="list row">
+    <div class="col-md-6">
+        <h4>Books List</h4>
+        <a class="badge badge-primary"
+        (click)="addNewBook()">
+            Add New Book
+        </a>
+        <ul class="list-group">
+            <li
+                class="list-group-item"
+                *ngFor="let book of books; let i = index"
+                [class.active]="i == currentIndex"
+                (click)="setActiveBook(book, i)"
+            >
+            {{ book.title }} ({{ book.author }}, {{ book.published_year}})
+            </li>
+        </ul>
+    </div>
+    <div class="col-md-6">
+        <div *ngIf="showForm">
+            <h4>{{ currentBook!._id != '' ? 'EDIT BOOK' : 'ADD NEW BOOK' }}</h4>
+            <div>
+                <label><strong>ISBN:</strong></label>
+                <input type="text" class="form-control" id="isbn" [(ngModel)]="currentBook!.isbn" name="isbn"/>
+            </div>
+            <div>
+                <label><strong>Title:</strong></label>
+                <input type="text" class="form-control" id="title" [(ngModel)]="currentBook!.title" name="title"/>
+            </div>
+            <div>
+                <label><strong>Author:</strong></label>
+                <input type="text" class="form-control" id="author" [(ngModel)]="currentBook!.author" name="author"/>
+            </div>
+            <div>
+                <label><strong>Description:</strong></label>
+                <input type="text" class="form-control" id="description" [(ngModel)]="currentBook!.description" name="description"/>
+            </div>
+            <div>
+                <label><strong>Year:</strong></label>
+                <input type="text" class="form-control" id="published_year" [(ngModel)]="currentBook!.published_year" name="published_year"/>
+            </div>
+            <div>
+                <label><strong>Publisher:</strong></label>
+                <input type="text" class="form-control" id="publisher" [(ngModel)]="currentBook!.publisher" name="publisher"/>
+            </div>
+            <div>
+                <a class="badge badge-primary m-2"
+                (click)="saveBook()">
+                    Save
+                </a>
+                <a class="badge badge-info m-2"
+                (click)="cancelBook()">
+                    Cancel
+                </a>
+                <a class="badge badge-danger m-2"
+                *ngIf="(currentBook!._id != '' ? true : false)"
+                (click)="deleteBook()">
+                    Delete
+                </a>
+            </div>
+
+            <div *ngIf="!currentBook">
+                <br />
+                <p>Please click on a Book...</p>
+            </div>
+        </div>
+  </div>
+</div>
